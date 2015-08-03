@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ParallelProgrammingProjects")]
+[assembly: AssemblyTitle("AsyncClasses")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ParallelProgrammingProjects")]
+[assembly: AssemblyProduct("AsyncClasses")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("6a583154-82b4-4860-a093-13fb470c46ac")]
+[assembly: Guid("d7a38b39-f3d2-48c7-ad45-43a92993f765")]
 
 // Version information for an assembly consists of the following four values:
 //
