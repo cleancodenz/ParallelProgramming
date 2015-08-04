@@ -62,10 +62,28 @@ namespace WPFApp
         //the same could happen for api controller which context is as different as this one UI thread
         private async void DeadLock_Click(object sender, RoutedEventArgs e)
         {
-            var jsonTask = GetJsonAsync(new Uri("http://www.google.com"));
+            string jsonTask;
+           
+            //Dead lock
+            //var a = LongRunningWithAsync().Result;
+            // No dead lock as it is from Task which is run on thread pool, not async Task, 
+            //var a = LongRunningWithTask().Result;
+
             // this is blocking ui
-            TextBox1.Text = jsonTask.Result;
+            //TextBox1.Text = a.ToString();
+
+            // Dead lock
+             //jsonTask = GetJsonAsync(new Uri("http://www.google.com")).Result;
             
+            // No dead lock, as it is from Task, not async Task
+            using (var client = new HttpClient())
+            {
+                jsonTask = client.GetStringAsync(new Uri("http://www.google.com")).Result;
+
+            }
+            // this is blocking ui
+             TextBox1.Text = jsonTask;
+
             /**
             // this is right way
             var jsonString = await GetJsonAsync(new Uri("http://www.google.com"));
@@ -81,6 +99,20 @@ namespace WPFApp
                return  await client.GetStringAsync(uri);
               
             }
+        }
+
+        // This needs to come back on calling thread 
+        public static async Task<int> LongRunningWithAsync()
+        {
+            await Task.Delay(100);
+            return 10;
+        }
+
+        // This does not need continuation, thread pool  
+        public static Task<int> LongRunningWithTask()
+        {
+            Task.Delay(100);
+            return Task.FromResult(10);
         }
     }
 }
